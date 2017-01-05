@@ -1,0 +1,56 @@
+
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Beneficios</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal">
+      <ion-icon name="add"></ion-icon>
+
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content padding>
+
+<!-- 
+  <ion-row wrap>
+    <ion-col  width-50 *ngFor="let person of beneficios | async">
+      <ion-card>
+        <ion-card-header>
+          Card Header
+        </ion-card-header>
+        <ion-card-content>
+       AGE: {{ person.rubros }}
+        </ion-card-content>
+      </ion-card>
+    </ion-col >
+</ion-row>
+ -->
+
+  <ion-row wrap>
+      <ion-card *ngFor="let beneficio of beneficios | async" (click)="navigate(beneficio)">
+         <ion-card-header>
+          <h3>{{beneficio.descripcion}}</h3>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-icon name="leaf" large item-left></ion-icon>
+            {{ beneficio.rubros }}
+
+        <ion-label fixed><h2>Cuotas:</h2></ion-label>
+            {{ beneficio.cuotas }}
+
+           <ion-label fixed> <h2>Descuentos:</h2></ion-label>
+           {{ beneficio.descuentos }}
+          <ion-label fixed> <h2>{{ beneficio.fecha }}</h2></ion-label>
+           
+        </ion-card-content>
+      </ion-card>
+</ion-row>
+
+</ion-content>

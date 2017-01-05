@@ -1,0 +1,110 @@
+
+<ion-header>
+
+    <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Nuevo beneficio</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+<img [src]="image">
+  <ion-list>
+    <ion-item *ngFor="let item of assetCollection; let i = index; trackBy:index">
+      <p>{{i}} - {{item.name}}</p>
+      <p>{{item.lastUpdated}}</p>
+      <img [src]=item.URL width="180px" class="padding"/>
+    </ion-item>
+  </ion-list>
+
+<ion-list>
+  <ion-item>
+	   <ion-label floating>Mensaje</ion-label>
+	   <ion-input [(ngModel)]="mensaje" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+	   <ion-label floating>Descripción</ion-label>
+	   <ion-input [(ngModel)]="descripcion" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Rubros</ion-label>
+ 
+<!--     <ion-select [(ngModel)]="rubros">
+      <ion-option *ngFor="beneficio of rubros" [value]="beneficio.name" >{{beneficio.name}}</ion-option>
+  </ion-select> -->
+    <ion-select [(ngModel)]="rubros">
+     
+      <ion-option value="tragos">Tragos</ion-option>
+      <ion-option value="deportes">Deportes</ion-option>
+      <ion-option value="comercio">Comercios</ion-option>
+      <ion-option value="electrodomesticos">Electrodomésticos</ion-option>
+    </ion-select>
+  </ion-item>
+
+
+  <ion-row>
+
+          <ion-checkbox style="margin-left: 20px; margin-top: 15px;"color="dark" [(ngModel)]="checked2" ></ion-checkbox>
+    <ion-item>
+       <ion-input [disabled]="!checked2" [(ngModel)]="topecompra" placeholder="Tope de compra" type="text"></ion-input>
+     </ion-item>
+  </ion-row>
+
+
+
+  <ion-item>
+    <ion-label>Descuentos</ion-label>
+    <ion-select [disabled]="!checked1"  [(ngModel)]="descuentos">
+      <ion-option value="5">5 %</ion-option>
+      <ion-option value="10">10 %</ion-option>
+      <ion-option value="15">15 %</ion-option>
+      <ion-option value="20">20 %</ion-option>
+      <ion-option value="25">25 %</ion-option>
+      <ion-option value="30">30 %</ion-option>
+      <ion-option value="35">35 %</ion-option>
+    </ion-select>
+          <ion-checkbox color="dark" [(ngModel)]="checked1" ></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Cuotas sin interes</ion-label>
+    <ion-select [disabled]="!checked"  [(ngModel)]="cuotas">
+      <ion-option value="5">3</ion-option>
+      <ion-option value="10">6</ion-option>
+      <ion-option value="15">12</ion-option>
+
+    </ion-select>
+      <ion-checkbox [(ngModel)]="checked" color="dark"></ion-checkbox>
+  </ion-item>
+<ion-item>
+ <button ion-button round color="primary" style="  margin:auto;  display:block;" (click)="doGetPicture()">Elegir</button>
+ <img style="margin-top: 5px"   [src]="base64Image" *ngIf="base64Image" />
+  <button ion-button round color="primary" style="  margin:auto;  display:block;" (click)="cargafoto()">Subir</button>
+</ion-item>
+</ion-list>
+
+
+
+
+<div><input *ngIf="reset" type="file" id="filebutton" value="upload" #filebtn (change)="filebuttoni($event)"> 
+<progress value="{{prog}}" max="100"><div id="percentageprog"></div></progress> 
+</div>
+
+  
+  <ion-row wrap>
+    <ion-card *ngFor="let pic of myPhotos; let i = index;">
+       <ion-card-header>
+      </ion-card-header>
+      <ion-card-content>
+           <h1> <img src="{{pic}}" ></h1>          
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+</ion-content>
+
+
+
+
